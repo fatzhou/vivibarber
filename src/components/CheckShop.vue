@@ -49,8 +49,9 @@
             data = JSON.parse(data)
           }
           console.log(data, data.openid, data.access_token)
-          window.info.openid = data.openid
-          window.info.token = data.access_token
+          window.info.openid = data.openid;
+          window.info.token = data.access_token;
+          alert(window.info.openid)
           cb && cb()
         })
       },

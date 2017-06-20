@@ -1,7 +1,7 @@
 <template>
   <div class="container dingdan-wrap yuyue-wrap">
       <div class="wrap">
-          <div class="weui-form-preview" v-for="item in orderList">
+          <div class="weui-form-preview" v-for="item, index in orderList">
               <div class="weui-form-preview__hd">
                   <div class="weui-form-preview__item">
                       <label class="weui-form-preview__label">预约号</label>
@@ -11,7 +11,7 @@
               <div class="weui-form-preview__bd">
                   <div class="weui-form-preview__item">
                       <label class="weui-form-preview__label">下单时间</label>
-                      <span class="weui-form-preview__value">{{time}}</span>
+                      <span class="weui-form-preview__value">{{item.time}}</span>
                   </div>
                   <div class="weui-form-preview__item">
                       <label class="weui-form-preview__label">预约理发师</label>
@@ -27,7 +27,7 @@
                   </div>
               </div>
               <div class="weui-form-preview__ft">
-                  <a class="weui-btn weui-btn_primary " v-if="item.status == 1 || item.status == 2" href="javascript:" id="">通知Ta到店</a>
+                  <a class="weui-btn weui-btn_primary " @click="dealOrder(item.orderno, index)" v-if="item.status == 0 || item.status == 1 || item.status == 2" href="javascript:" id="">通知Ta到店</a>
                   <a class="weui-btn weui-btn_primary weui-btn_disabled" v-else href="javascript:" id="">已通知</a>
               </div>
           </div>
@@ -39,7 +39,7 @@
   import util from '../assets/js/util.js'
 
 export default {
-  name: 'hello',
+  name: 'OrdreList',
   data () {
     return {
       url: util.api.host + util.api.queryOrder,
@@ -69,6 +69,11 @@ export default {
         var data = res.body;
         if(data.code == 0) {
           this.orderList[index].status = 3;
+          this.orderList = this.orderList.filter(function() {
+            return true;
+          })
+          // this.$set(this.orderList[index], status, 3);
+
         } else {
           alert(data.msg);
         }
