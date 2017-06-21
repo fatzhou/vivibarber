@@ -23,9 +23,9 @@
 
                 </a>
                 <div class="clear"></div>
-                <div class="grids-tips " v-if="nodealcount > 0" @click="queryOrderList">
+                <div class="grids-tips " v-if="orderCount > dealcount" @click="queryOrderList">
                     <div class="grids-tips-cont">
-                        <p><i class="weui-icon-info-circle"></i> 你有{{nodealcount}}条未处理的订单信息，请查看</p>
+                        <p><i class="weui-icon-info-circle"></i> 你有{{orderCount - dealcount}}条未处理的订单信息，请查看</p>
                     </div>
                 </div>
             </div>

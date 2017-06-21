@@ -23,7 +23,7 @@
                   </div>
                   <div class="weui-form-preview__item">
                       <label class="weui-form-preview__label">用户已等待</label>
-                      <span class="weui-form-preview__value"> <span class="statu sta1">30分钟</span></span>
+                      <span class="weui-form-preview__value"> <span class="statu sta1">{{item.waitTime}}</span></span>
                   </div>
               </div>
               <div class="weui-form-preview__ft">
@@ -89,6 +89,27 @@ export default {
           seconds = ('00' + dt.getSeconds()).slice(-2);
       return year + '年' + month + '月' + day + '日' + ' ' + [hour, minutes, seconds].join(':');
     },
+    computeWaitTime(st) {
+      var days = Math.floor(st / (24 * 3600 * 1000));
+      var left = st % (24 * 3600 * 1000);
+      var hours = Math.floor(left / (3600 * 1000));
+      var left1 = left % (3600 * 1000);
+      var minutes = Math.floor(left1 / (60 * 1000));
+      var left2 = left1 % (60 * 1000);
+      var seconds = Math.floor(left2 / 1000);
+      var str = '';
+
+      var flag = true;
+      [[days, '天'], [hours, '小时'], [minutes, '分'], [seconds, '秒']].forEach(function(item, index) {
+          if(flag && !item[0]) {
+            return true;
+          } else {
+            flag = false;
+          }
+          str = str + item.join('');
+      });
+      return str;
+    },
     queryOrderInfo() {
       var postData = {
         openid: window.info.openid,
@@ -106,6 +127,7 @@ export default {
           var orderList = data.orderlist || [];
           orderList.forEach((item)=>{
             item.time = this.computeTime(item.createtime * 1000);
+            item.waitTime = this.computeWaitTime(Date.now() - item.createtime * 1000);
             if(typeof item.detail === 'string') {
               item.detail = JSON.parse(item.detail);
             }
