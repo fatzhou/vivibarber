@@ -21,7 +21,7 @@
       window.info.openid = query['openid'] || ''
       window.info.token = query['access_token'] || ''
       window.info.code = query['code'] || ''
-
+console.log(query)
       if (window.info.code) {
         //  只有code,需要先换取token
         this.getToken(() => {

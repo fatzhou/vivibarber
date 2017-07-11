@@ -77,6 +77,18 @@
                     </div>
                 </router-link>
             </div>
+
+            <div class="weui-cells">
+                <!--小铺名称-->
+                <router-link class="weui-cell weui-cell_access"  :to="{path:'AddBarberByQrcode'}" href="javascript:;">
+                    <div class="weui-cell__bd">
+                        <p>二维码添加理发师</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        {{'生成二维码'}}
+                    </div>
+                </router-link>
+            </div>            
 <!--             <div class="weui-cells">
                 <a class="weui-cell weui-cell_access" href="javascript:;">
                     <div class="weui-cell__bd">
