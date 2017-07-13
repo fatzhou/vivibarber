@@ -62,7 +62,7 @@
             vericode: this.vericode,
             path: "pages/registerEmployee/index"
           };
-console.log(postData)
+
           this.$http.get(this.getQrcodeUrl, {
             params: postData
           })

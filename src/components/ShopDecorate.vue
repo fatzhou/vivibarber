@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="add-wrap">
-                      <router-link href="javascript:;" to="BuildProduct" class="add">添加理发师</router-link>
+                      <router-link href="javascript:;" to="AddBarberByQrcode" class="add">添加理发师</router-link>
                     </div>
                 </div>
             </div>
