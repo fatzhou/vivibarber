@@ -10,7 +10,7 @@
               <i class="ico-notic"></i><span>小铺已生成，请添加理发师信息</span><a href="javascript:;" @click="hideTips" class="oper"><i class="iconfont-dasan-9"></i> </a>
           </p>
           <div class="content wrap" :style="{paddingTop: showTips?'100px':'50px'}">
-              <router-link href="javascript:;" class="no-add" to="BuildProduct">
+              <router-link href="javascript:;" class="no-add" to="AddBarberByQrcode">
                 <i class="ico-addprodcut"></i>
                 <span>添加理发师</span>
               </router-link>

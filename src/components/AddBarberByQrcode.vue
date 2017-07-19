@@ -23,7 +23,7 @@
             xcxTokenUrl: util.api.host + util.api.getXcxToken,
             getQrcodeUrl: util.api.host + util.api.getQrcode,
             ifMaskDisplay: 'block',
-            vericode: "iamtestvericode"
+            vericode: "1234"
           }
       },
       activated: function() {
