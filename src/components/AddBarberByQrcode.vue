@@ -60,7 +60,7 @@
             access_token: this.access_token,
             shopid: window.info.shopid,
             vericode: this.vericode,
-            path: "pages/registerEmployee/index"
+            path: "pages/registerEmployee/index?shopid="+window.info.shopid+"&vericode=" + this.vericode
           };
 
           this.$http.get(this.getQrcodeUrl, {

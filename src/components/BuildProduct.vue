@@ -46,8 +46,8 @@
     </div>
     <div class="footer">
         <div class="weui-btn-area">
-            <a class="weui-btn weui-btn_default" @click="goBack" href="javascript:" id="showTooltips">保存并继续添加</a>
-            <a class="weui-btn weui-btn_primary" @click="goNext" href="javascript:" id="showTooltips">保存并返回</a>
+            <a class="weui-btn weui-btn_primary" @click="goBack" href="javascript:" id="save">保存</a>
+            <a class="weui-btn weui-btn_default" @click="delBarber" href="javascript:" id="remove">删除</a>
         </div>
     </div>
 </div>
@@ -68,6 +68,7 @@ import util from '../assets/js/util.js'
             ifMaskDisplay: 'none',
             logo: '',
             maxPic: 1,
+            status: 0,
             currentSelectLogoIndex: -1
           }
       },
@@ -100,6 +101,16 @@ import util from '../assets/js/util.js'
         deleteLogo() {
           if(this.currentSelectLogoIndex != -1) {
             this.imgList.splice(this.currentSelectLogoIndex, 1);
+          }
+        },
+        delBarber() {
+          let cm = window.confirm("您确定要删除该理发师信息吗？");
+          if(cm == true) {
+            this.status = 1;
+            this.saveItem(()=>{
+              this.clearData();
+              this.$router.pop();
+            })
           }
         },
         goBack() {
@@ -141,7 +152,7 @@ import util from '../assets/js/util.js'
             desc: '',
             price: '',
             image: this.imgList.join('|'),
-            status: 0
+            status: this.status
           };
           this.prodid && (postData.prodid = this.prodid);
           this.$http.post(this.url, postData)

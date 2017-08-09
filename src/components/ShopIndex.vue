@@ -53,10 +53,10 @@
                     <i class="iconfont-dasan-27"></i>
                     <p class="weui-grid__label">小铺预览</p>
                 </router-link>
-                <a href="javascript:;" class="weui-grid">
+   <!--              <a href="javascript:;" class="weui-grid">
                     <i class="iconfont-dasan-24"></i>
                     <p class="weui-grid__label">意见反馈</p>
-                </a>
+                </a> -->
             </div>
         </div>
     </div>
@@ -186,5 +186,9 @@
     #qrcode-wrap img {
       width: 50px;
       height: 50px;
+    }
+
+    .weui-grid {
+      width: 50%;
     }
 </style>
