@@ -106,10 +106,10 @@ import util from '../assets/js/util.js'
         delBarber() {
           let cm = window.confirm("您确定要删除该理发师信息吗？");
           if(cm == true) {
-            this.status = 1;
+            this.status = 2;
             this.saveItem(()=>{
               this.clearData();
-              this.$router.pop();
+              this.$router.push('ShopDecorate');
             })
           }
         },
@@ -117,12 +117,14 @@ import util from '../assets/js/util.js'
           this.saveItem(()=>{
               alert('理发师信息保存成功');
               this.clearData();
+              this.$router.push('ShopDecorate');
             })
         },
         clearData() {
           this.imgList = [];
           this.name = '';
           this.prodid = '';
+          this.status = 0;
         },
         checkForm() {
           var flag = util.checkForm([

@@ -62,7 +62,7 @@ console.log(query)
         }
 
         var from = this.$route.params && this.$route.params.from
-        if (from === 'ShopDecorate' || from === 'ShopIndex' || from === 'BuildIndex') {
+        if (from === 'ShopDecorate' || from === 'OrderList' || from === 'ShopIndex' || from === 'BuildIndex') {
         } else {
           from = ''
         }

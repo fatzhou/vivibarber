@@ -58,11 +58,12 @@
         getQrcode() {
           var postData = {
             access_token: this.access_token,
-            shopid: window.info.shopid,
-            vericode: this.vericode,
-            path: "pages/registerEmployee/index?shopid="+window.info.shopid+"&vericode=" + this.vericode
+            // shopid: window.info.shopid,
+            // vericode: this.vericode,
+            path: "pages/enterShop/enterShop?shopid="+window.info.shopid+"&vericode=" + this.vericode
           };
 
+          console.log(postData, "postData");
           this.$http.get(this.getQrcodeUrl, {
             params: postData
           })

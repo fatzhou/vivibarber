@@ -22,7 +22,7 @@
             <div class="shop-layer">
                 <div class="weui-panel__bd"   :style="{paddingTop: showTips?'30px':0}">
                     <!--item-->
-                    <div  class="weui-media-box weui-media-box_appmsg" v-for="item in itemList">
+                    <div  class="weui-media-box weui-media-box_appmsg" v-for="item in itemList" v-if="item.status != 2">
                         <div class="weui-media-box__hd" style="padding-left: 0;">
                             <img class="weui-media-box__thumb" :src="(item.image.split('|'))[0]" alt="">
                         </div>
@@ -84,13 +84,15 @@
       },
       activated: function() {
         document.title = '小铺装修';//by:yoyo
-        this.getCategories(()=>{
-          if(this.categoryList.length > 0) {
-            this.getItemsInCategory(this.currentIndex);
-            // this.getItemsInCategory(this.categoryList[this.currentIndex].classid);
-          } else {
-            this.getItemsInCategory(this.currentIndex);
-          }
+        util.getToken(this, ()=>{
+          this.getCategories(()=>{
+            if(this.categoryList.length > 0) {
+              this.getItemsInCategory(this.currentIndex);
+              // this.getItemsInCategory(this.categoryList[this.currentIndex].classid);
+            } else {
+              this.getItemsInCategory(this.currentIndex);
+            }
+          });          
         });
       },
       computed: {

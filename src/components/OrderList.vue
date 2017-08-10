@@ -52,7 +52,10 @@ export default {
   },
 
   activated() {
-    this.queryOrderInfo();
+    document.title = '订单列表';//by:yoyo
+    util.getToken(this, ()=> {
+      this.queryOrderInfo();      
+    })
   },
 
  methods: {

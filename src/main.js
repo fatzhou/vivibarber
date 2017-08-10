@@ -25,21 +25,21 @@ Vue.mixin({
   },
   mounted() {
     var name = this.$route.matched[0].name;
-    if(!window.info.openid && location.hash.indexOf('CheckShop') != 2 && location.hash.indexOf('ToDevelop') != 2) {
-      // if(location.hash.indexOf('ShopIndex') != 2 && location.hash.indexOf('ShopDecorate') != 2 && location.hash.indexOf('BuildIndex') != 2) {
+    // if(!window.info.openid && location.hash.indexOf('CheckShop') != 2 && location.hash.indexOf('ShopIndex') != 2 && location.hash.indexOf('ToDevelop') != 2 && location.hash.indexOf('ShopDecorate') != 2  && location.hash.indexOf('OrderList') != 2 ) {
+    //   // if(location.hash.indexOf('ShopIndex') != 2 && location.hash.indexOf('ShopDecorate') != 2 && location.hash.indexOf('BuildIndex') != 2) {
 
-      // } else {
-      //   router.push({
-      //     name: 'CheckShop'
-      //   });
-      // }
-        router.push({
-          name: 'CheckShop',
-          params: {
-            from: name
-          }
-        });
-    }
+    //   // } else {
+    //   //   router.push({
+    //   //     name: 'CheckShop'
+    //   //   });
+    //   // }
+    //     router.push({
+    //       name: 'CheckShop',
+    //       params: {
+    //         from: name
+    //       }
+    //     });
+    // }
 
   },
   activated: function() {

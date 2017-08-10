@@ -48,6 +48,49 @@ function checkForm(data) {
     return flag;
 }
 
+function queryShop(self, callback) {
+    console.log(self, "queryShop");
+    var postData = {
+      openid: window.info.openid,
+      token: window.info.token
+    };
+
+    self.$http.post(api.host + api.queryShop, postData)
+    .then((res) => {
+      var data = res.body
+      if (data.code === 0) {
+        if (data.shopid) {
+          window.info.shopid = data.shopid
+          window.info.mobile = data.mobile
+          callback && callback();
+        } else {
+          self.$router.push('MobileBind')
+        }
+      } else {
+        // alert(data.msg);
+      }
+    })
+}
+
+function queryToken(self, cb) {
+    self.get(api.host + api.getToken, {
+      params: {
+        code: window.info.code
+      }
+    })
+    .then((res) => {
+      var data = res.body;
+      if (typeof data === 'string') {
+        data = JSON.parse(data)
+      }
+      console.log(data, data.openid, data.access_token)
+      window.info.openid = data.openid;
+      window.info.token = data.access_token;
+
+      cb && cb();
+    })
+}
+
 function getUrlKey(name) {
     var url = location.search; //获取url中"?"符后的字串
     var theRequest = new Object();
@@ -61,8 +104,29 @@ function getUrlKey(name) {
     return theRequest;
 }
 
+function getToken(self, callback) {
+    console.log(self, "getToken")
+    if(!window.info.token) {
+        var query = getUrlKey();
+        if(query.openid) {
+            console.log(query.openid);
+            window.info.openid = query.openid;
+            window.info.token = query.access_token;
+            queryShop(self, callback);
+        } else if(query.code) {
+            window.info.code = query.code;
+            queryToken(self, ()=> {
+                queryShop(self, callback);
+            })
+        }
+    } else {
+        callback && callback();
+    }
+}
+
 export default {
     api: api,
     checkForm: checkForm,
-    getUrlKey: getUrlKey
+    getUrlKey: getUrlKey,
+    getToken: getToken
 }

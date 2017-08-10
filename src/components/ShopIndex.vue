@@ -112,8 +112,10 @@
       },
       activated() {
         document.title = '我的小铺';
-        this.queryShopInfo();
-        this.queryShopOrders();
+        util.getToken(this, ()=>{
+          this.queryShopInfo();
+          this.queryShopOrders();          
+        });
       },
       methods: {
         toggleDataView(index) {
